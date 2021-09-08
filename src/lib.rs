@@ -38,19 +38,39 @@
 /// fn my_panic() -> ! {
 ///     loop { /* who needs to actually do something when they panic? }
 /// }
+/// ```
+/// The panic handler MUST return the [`never`](https://doc.rust-lang.org/std/primitive.never.html) type, or the program will not compile!
+#[macro_export]
 macro_rules! pretty_panic {
     () => {
-        if cfg!(release) {
-            fn default_handler(e: &PanicInfo) -> ! {
-                eprintln!("Uh oh!\
-                    \
-                    The program experienced a fatal error, and has panicked. Recommend you contact one\
-                    of the authors for assistance. See below for some additional information:\
-                    \
-                    (If you are going to submit a bug report, include the entirety of this message!)\
-                    {}"
-                );
-            }
+        use std::panic::{set_hook, PanicInfo};
+        fn default_handler(e: &PanicInfo) -> ! {
+            use std::thread;
+            let pkg_name: String = env!("CARGO_PKG_NAME").into();
+            let pkg_ver: String = env!("CARGO_PKG_VERSION").into();
+            let pkg_devs: String = env!("CARGO_PKG_AUTHORS").replace(":", ", ").into();
+            let pkg_home: String = env!("CARGO_PKG_HOMEPAGE").into();
+            let t = thread::current();
+            let t = match t.name() {
+                Some(name) => name,
+                None => "unknown",
+            };
+
+            eprintln!("Uh oh!\n");
+            eprintln!("The program experienced a fatal error, and has panicked. Recommend you contact one");
+            eprintln!("of the authors for assistance. See below for some additional information:\n");
+            eprintln!("(If you are going to submit a bug report, include the entirety of this message!)");
+            eprintln!("{} v{} ({}) - panic start", pkg_name, pkg_ver, pkg_home);
+            eprintln!("     panic from thread [{}]:\n         {}\n", t, e);
+            eprintln!("Submit bug report to the authors: {}", pkg_devs);
+            eprintln!("{} v{} ({}) - panic end", pkg_name, pkg_ver, pkg_home);
+            std::process::exit(101);
         }
+        set_hook(Box::new(|e| { default_handler(e) }));
+    };
+
+    ($fname:ident) => {
+            use std::panic::{set_hook, PanicInfo};
+            set_hook(Box::new(|e| { $fname(e) }));
     }
 }

@@ -19,8 +19,20 @@ Output:
 ```txt
 Uh oh!
 
-The program experienced a fatal error, and has panicked. Recommend you contact one of the authors for assistance.
-See below for some basic information. If you submit a bug report, be sure to include this entire message.
+The program experienced a fatal error, and has panicked. Recommend you contact one
+of the authors for assistance. See below for some additional information:
 
-BEGIN PANIC INFO:
-    panicked at 'explicit call to panic!()', src/main.rs 6
+(If you are going to submit a bug report, include the entirety of this message!)
+pretty-panic v0.1.0 () - panic start
+     panic from thread [main]:
+         panicked at 'explicit call to panic!()', examples/simple.rs:6:5
+
+Submit bug report to the authors:
+pretty-panic v0.1.0 () - panic end
+```
+
+### Installation
+Add the following to the `[dependencies]` section in your `Cargo.toml` file:
+```toml
+[dependencies]
+pretty-panic = "1.0.0"
