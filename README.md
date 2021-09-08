@@ -36,3 +36,8 @@ Add the following to the `[dependencies]` section in your `Cargo.toml` file:
 ```toml
 [dependencies]
 pretty-panic = "1.0.0"
+```
+
+<h6 align="center">
+    <a href="./LICENSE">License</a>
+</h6>

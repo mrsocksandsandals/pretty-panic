@@ -3,6 +3,12 @@ name = "pretty-panic"
 version = "1.0.0"
 edition = "2021"
 
+license = "MIT"
+description = "A simple library for nicer panic messages."
+homepage = "https://crates.io/crates/pretty-panic"
+repository = "https://github.com/notronaldmcdonald/pretty-panic.git"
+readme = "README.md"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
