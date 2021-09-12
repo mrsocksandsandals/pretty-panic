@@ -21,6 +21,7 @@
 //!
 //!     panic!("A panic message.");
 //! }
+//! ```
 //! It's that simple! The `pretty_panic!()` macro can take a custom panic handler function as an argument.
 //! If one isn't passed, it simply uses the default.
 

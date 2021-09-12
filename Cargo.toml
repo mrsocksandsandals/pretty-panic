@@ -1,7 +1,8 @@
 [package]
 name = "pretty-panic"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
+authors = ["Brett I. <notronaldmcdonald>"]
 
 license = "MIT"
 description = "A simple library for nicer panic messages."
