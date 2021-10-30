@@ -26,6 +26,7 @@
 //! If one isn't passed, it simply uses the default.
 
 /// Sets the panic handler function to a function of your choosing.
+///
 /// **Example**:
 /// ```rust
 /// use pretty_panic::pretty_panic;
@@ -37,7 +38,7 @@
 /// }
 ///
 /// fn my_panic() -> ! {
-///     loop { /* who needs to actually do something when they panic? }
+///     loop { /* who needs to actually do something when they panic? */ }
 /// }
 /// ```
 /// The panic handler MUST return the [`never`](https://doc.rust-lang.org/std/primitive.never.html) type, or the program will not compile!
