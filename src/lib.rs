@@ -37,7 +37,7 @@
 /// }
 ///
 /// fn my_panic() -> ! {
-///     loop { /* who needs to actually do something when they panic? }
+///     loop { /* who needs to actually do something when they panic? */ }
 /// }
 /// ```
 /// The panic handler MUST return the [`never`](https://doc.rust-lang.org/std/primitive.never.html) type, or the program will not compile!
