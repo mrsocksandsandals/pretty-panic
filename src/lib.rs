@@ -26,6 +26,7 @@
 //! If one isn't passed, it simply uses the default.
 
 /// Sets the panic handler function to a function of your choosing.
+///
 /// **Example**:
 /// ```rust
 /// use pretty_panic::pretty_panic;
