@@ -37,16 +37,15 @@
 ///     panic!("a panic message")
 /// }
 ///
-/// fn my_panic() -> ! {
+/// fn my_panic() {
 ///     loop { /* who needs to actually do something when they panic? */ }
 /// }
 /// ```
-/// The panic handler MUST return the [`never`](https://doc.rust-lang.org/std/primitive.never.html) type, or the program will not compile!
 #[macro_export]
 macro_rules! pretty_panic {
     () => {
         use std::panic::{set_hook, PanicInfo};
-        fn default_handler(e: &PanicInfo) -> ! {
+        fn default_handler(e: &PanicInfo) {
             use std::thread;
             let pkg_name: String = env!("CARGO_PKG_NAME").into();
             let pkg_ver: String = env!("CARGO_PKG_VERSION").into();
@@ -66,7 +65,6 @@ macro_rules! pretty_panic {
             eprintln!("     panic from thread [{}]:\n         {}\n", t, e);
             eprintln!("Submit bug report to the authors: {}", pkg_devs);
             eprintln!("{} v{} ({}) - panic end", pkg_name, pkg_ver, pkg_home);
-            std::process::exit(101);
         }
         set_hook(Box::new(|e| { default_handler(e) }));
     };
