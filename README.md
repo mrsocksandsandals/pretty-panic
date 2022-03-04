@@ -35,7 +35,7 @@ pretty-panic v0.1.0 () - panic end
 Add the following to the `[dependencies]` section in your `Cargo.toml` file:
 ```toml
 [dependencies]
-pretty-panic = "1.0.1"
+pretty-panic = "1.0"
 ```
 
 <h6 align="center">
